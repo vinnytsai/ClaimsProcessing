@@ -1,19 +1,16 @@
 {
-    "name": "CosmosProvider",
-    "properties": {
-        "linkedServiceName": {
-            "referenceName": "CoreClaimsCosmosDb",
-            "type": "LinkedServiceReference"
-        },
-        "folder": {
-            "name": "CosmoDB_Output"
-        },
-        "annotations": [],
-        "type": "CosmosDbSqlApiCollection",
-        "schema": {},
-        "typeProperties": {
-            "collectionName": "Provider"
-        }
-    },
-    "type": "Microsoft.Synapse/workspaces/datasets"
+	"name": "CosmosProvider",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "claimscosmosdb",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "CosmoDB_Output"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
 }
