@@ -10,7 +10,10 @@
 		},
 		"annotations": [],
 		"type": "CosmosDbSqlApiCollection",
-		"schema": {}
+		"schema": {},
+		"typeProperties": {
+			"collectionName": "Payer"
+		}
 	},
 	"type": "Microsoft.Synapse/workspaces/datasets"
 }

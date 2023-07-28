@@ -10,7 +10,10 @@
 		},
 		"annotations": [],
 		"type": "CosmosDbSqlApiCollection",
-		"schema": {}
+		"schema": {},
+		"typeProperties": {
+			"collectionName": "Adjudicator"
+		}
 	},
 	"type": "Microsoft.Synapse/workspaces/datasets"
 }

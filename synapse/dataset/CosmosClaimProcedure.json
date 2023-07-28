@@ -10,7 +10,10 @@
 		},
 		"annotations": [],
 		"type": "CosmosDbSqlApiCollection",
-		"schema": {}
+		"schema": {},
+		"typeProperties": {
+			"collectionName": "ClaimProcedure"
+		}
 	},
 	"type": "Microsoft.Synapse/workspaces/datasets"
 }
