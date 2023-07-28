@@ -1,0 +1,17 @@
+{
+	"name": "Serverless SQL DE",
+	"properties": {
+		"content": {
+			"query": "IF (NOT EXISTS(SELECT * FROM sys.credentials WHERE name = 'dbcoreclaims6de74'))\n    THROW 50000, 'As a prerequisite, create a credential with Azure Cosmos DB key in SECRET option:\n    CREATE CREDENTIAL [dbcoreclaims6de74]\n    WITH IDENTITY = ''SHARED ACCESS SIGNATURE'', SECRET = ''<Enter your Azure Cosmos DB key here>''', 0\nGO\n\nCREATE VIEW [v_claim] as\nSELECT *\nFROM OPENROWSET(​PROVIDER = 'CosmosDB',\n                CONNECTION = 'Account=dbcoreclaims6de74;Database=CoreClaimsApp',\n                OBJECT = 'Claim',\n                SERVER_CREDENTIAL = 'dbcoreclaims6de74_creds'\n) as [Claim]\n\nCREATE VIEW [v_member] as\nSELECT *\nFROM OPENROWSET(​PROVIDER = 'CosmosDB',\n                CONNECTION = 'Account=dbcoreclaims6de74;Database=CoreClaimsApp',\n                OBJECT = 'Member',\n                SERVER_CREDENTIAL = 'dbcoreclaims6de74_creds'\n) AS [Member]\n\nselect dbo.[v_member].firstName, dbo.[v_member].lastName ,dbo.[v_claim].claimId\nfrom dbo.[v_claim] inner join dbo.[v_member] on dbo.[v_claim].memberId = dbo.[v_member].memberId where dbo.[v_member].firstName is not null\norder by dbo.[v_member].firstName\n\nselect firstName, memberId from dbo.[v_member]\nselect memberId, claimId from dbo.[v_claim]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "ClaimProcessingServerlessDB",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
